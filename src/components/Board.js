@@ -1,25 +1,28 @@
 import "./board.css";
-import React from "react";
+import React, { useState } from "react";
 import Square from "./Square";
 
 export default function Board() {
   const [squares, setSquares] = React.useState([
-    "🐨",
     null,
-    "🐸",
-    "🐸",
-    "🐸",
-    "🐨",
-    "🐨",
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
     null,
     null,
   ]);
-  const status = "Next player: X";
+  const [koalaIsNext, setKoalaIsNext] = React.useState(true);
+  const nextPlayer = koalaIsNext ? "🐨" : "🐸";
+  const status = `Next player: ${nextPlayer}`;
 
   const handleClick = (index) => {
     const newSquares = [...squares];
-    newSquares[index] = "🐨";
+    newSquares[index] = koalaIsNext ? "🐨" : "🐸";
     setSquares(newSquares);
+    setKoalaIsNext(!koalaIsNext);
   };
   return (
     <div>
